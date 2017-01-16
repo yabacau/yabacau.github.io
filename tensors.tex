@@ -1,0 +1,142 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+% \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading nips_2016
+%
+% to avoid loading the natbib package, add option nonatbib:
+% \usepackage[nonatbib]{nips_2016}
+
+\usepackage[final]{nips_custom}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+% \usepackage[final]{nips_2016}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{amsmath}
+\usepackage{amssymb}        
+\usepackage{amsthm}         % environments for theorems
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+
+\title{Exploring the Structure and Smoothness of Manifolds}
+
+% The \author macro works with any number of authors. There are two
+% commands used to separate the names and addresses of multiple
+% authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to
+% break the lines. Using \AND forces a line break at that point. So,
+% if LaTeX puts 3 of 4 authors names on the first line, and the last
+% on the second line, try using \AND instead of \And before the third
+% author name.
+
+\author{
+    Justin H.~Le \\
+    %% \thanks{Footnote} \\
+    Department of Electrical \& Computer Engineering \\
+    University of Nevada, Las Vegas \\
+  \texttt{lejustin.lv@gmail.com} \\
+  %% examples of more authors
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \AND
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+
+\begin{document}
+% \nipsfinalcopy is no longer used
+
+\maketitle
+
+% \begin{abstract}
+  % The abstract paragraph should be indented \nicefrac{1}{2}~inch
+  % (3~picas) on both the left- and right-hand margins. Use 10~point
+  % type, with a vertical spacing (leading) of 11~points.  The word
+  % \textbf{Abstract} must be centered, bold, and in point size 12. Two
+  % line spaces precede the abstract. The abstract must be limited to
+  % one paragraph.
+% \end{abstract}
+
+\section{Multilinear maps}
+
+A tensor $\mathcal{T}$ of order $r$ can be expressed as the \textit{tensor product} of $r$ vectors:
+\begin{equation}
+\mathcal{T} = u_1 \otimes u_2 \otimes \ldots \otimes u_r
+\end{equation}
+We herein fix $r = 3$ whenever it eases exposition. Recall that a vector $u \in U$ can be expressed as the combination of the basis vectors of $U$. Transform these basis vectors with a matrix $A$, and if the resulting vector $u'$ is equivalent to $uA$, then the components of $u$ are said to be \textit{covariant}. If $u' = A^{-1}u$, i.e., the vector changes inversely with the change of basis, then the components of $u$ are \textit{contravariant}. By \textit{Einstein notation}, we index the covariant components of a tensor in subscript and the contravariant components in superscript.
+
+Just as the components of a vector $u$ can be indexed by an integer $i$ (as in $u_i$), tensor components can be indexed as $\mathcal{T}_{ijk}$. Additionally, as we can view a matrix to be a linear map $M: U \rightarrow V$ from one finite-dimensional vector space to another, we can consider a tensor to be a \textit{multilinear} map $\mathcal{T}: V^{*r} \times V^s \rightarrow \mathbb{R}$, where $V^s$ denotes the $s$-th-order Cartesian product of vector space $V$ with itself and likewise for its algebraic dual space $V^*$. In this sense, a tensor maps an ordered sequence of vectors to one of its (scalar) components. Just as a linear map satisfies $M(a_1 u_1 + a_2 u_2) = a_1 M(u_1) + a_2 M(u_2)$, we call an $r$-th-order tensor multilinear if it satisfies
+\begin{equation}
+\mathcal{T}(u_1, \ldots, a_1 v_1 + a_2 v_2, \ldots, u_r) = a_1 \mathcal{T}(u_1, \ldots, v_1, \ldots, u_r) + a_2 \mathcal{T}(u_1, \ldots, v_2, \ldots, u_r),
+\end{equation}
+for scalars $a_1$ and $a_2$.
+
+Let $\{\mathcal{T}\}$ be the set of all tensors. Endow $\{\mathcal{T}\}$ with the binary operator $+$ that maps two tensors, $\mathcal{T}_1$ and $\mathcal{T}_2$, to a tensor whose $ijk$-th component is the scalar addition of the $ijk$-th components of $\mathcal{T}_1$ and $\mathcal{T}_2$. Let scalar multiplication be defined on $\{\mathcal{T}\}$ such that the multiplication of $\mathcal{T}$ by a scalar $a$ results in a multiplication of its components by $a$. Further endow the set with the tensor product operator as defined above. Then with these operators, $\{\mathcal{T}\}$ forms an algebra over the field $\{a\}$, the set of all $a$ for which the above properties hold.
+
+\section{Differentiation on smooth manifolds}
+
+Let $X$ be any set and $T$ be a collection of subsets of $X$. Call the members of $T$ \textit{open sets}. $T$ forms a topology on $X$ if its members satisfy:
+
+\begin{itemize}
+\item $T$ contains $X$ and the empty set $\varnothing$
+\item Arbitrary unions of open sets are open 
+\item Finite intersections of open sets are open
+\end{itemize}
+
+Then $(X, T)$ is a \textit{topological space}. For simplicity, we often omit $T$ and refer to a topological space by its underlying set $X$.
+
+An open set containing $x \in X$ is a \textit{neighborhood} of $x$. $T$ is \textit{Hausdorff} if there exist disjoint sets $A, B \in T$ such that $a \in A$ and $b \in B$, $\forall a, b \in X$. That is, on a Hausdorff topological space, any two points lie in disjoint neighborhoods.
+
+\begin{proposition}
+A subspace of a Hausdorff space is Hausdorff.
+\end{proposition}
+\begin{proof}
+Let $H$ and $G \subseteq H$ be topological spaces. (We omit their topologies for simplicity.) Suppose $G$ is not Hausdorff. Then for some $a, b \in G$, there exist $A, B \subseteq G$ such that $a \in A$, $b \in B$, and $A \cap B \neq \varnothing$. Yet, $a, b \in H$ and $A, B \subseteq H$, so the same can be said for $H$. Thus, $G$ not Hausdorff implies $H$ not Hausdorff.
+\end{proof}
+
+Recall that a map $f: \mathbb{R} \rightarrow \mathbb{R}$ is continuous at a point $c \in \mathbb{R}$ if $\forall \epsilon > 0$, $\exists \delta > 0$ such that $|x - c| < \delta \Rightarrow |f(x) - f(c)| < \epsilon$, $\forall x \in \mathbb{R}$. Intuitively, this definition of continuity seems to highlight a relationship between "neighborhoods" of size $\epsilon$ and $\delta$. We can analogously understand continuity of maps between topological spaces. 
+
+Let $X, Y$ be two topological spaces and $A \in X, B \in Y$ be open sets. A map $f: X \rightarrow Y$ is continuous if $\forall B \in Y$ and $\forall x \in X$, there exists a neighborhood $A$ of $x$ such that $f(A) \in B$. Equivalently, we can say that the inverse image of an open set in $Y$ is open.
+
+If both $f$ and its inverse are continous, then $f$ is a \textit{homeomorphism}. Then there exists a continuous map $g: Y \rightarrow X$ such that $f \circ g = g \circ f = 1$. Then $X$ and $Y$ are \textit{homeomorphic} or \textit{topologically equivalent}.
+
+Recall that a map $f: \mathbb{R} \rightarrow \mathbb{R}$ is smooth if $\partial^k f / \partial x^k$ exists and is continuous $\forall x \in \mathbb{R}$ and $k = 1, 2, 3, \ldots$. Equivalently, we say that $f$ is $C^{\infty}(\mathbb{R})$. We can similarly define smoothness for maps between open sets. 
+
+Let $X, Y \subseteq \mathbb{R}^n$ be open sets. The map $f: X \rightarrow Y$ is smooth if every component of the Jacobian matrix 
+\begin{equation}
+Df(x) := \left [ \frac{\partial^i f}{\partial x^j} \right ] 
+\end{equation}
+exists and is continuous $\forall i, j = 1, 2, 3, \ldots$. Here, we note that, for a single component of $f$ (i.e., a map $f^i: \mathbb{R}^n \rightarrow \mathbb{R}$),
+\begin{equation}
+\frac{\partial f^i}{\partial x} = \frac{\partial^n f^i}{\partial x^1 \ldots \partial x^n}.
+\end{equation}
+
+Let $f: X \rightarrow Y$ be a homeomorphism, where $X, Y \subseteq \mathbb{R}$ are open sets. If both $f$ and its inverse are smooth, then $f$ is a \textit{diffeomorphism}.
+
+\end{document}

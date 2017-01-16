@@ -1,0 +1,147 @@
+body {
+    background: white;
+    font-family: Times, Georgia, serif; 
+    text-align: left;
+    margin-bottom: 100px;
+}
+
+#top-table {
+    vertical-align: bottom;
+    border-bottom: 1px solid;
+    margin-bottom: 1.0em;
+    margin-top: -10px;
+    padding-top: 10px;
+    margin: 0 auto;
+}
+
+#bottom-table {
+    padding-top: 1.0em;
+    margin-bottom: 1.0em;
+    width: 56%;
+    margin: 0 auto;
+}
+
+#header, #menu {
+    font-weight: bold;
+}
+
+#header {
+    width: 8.0cm;
+    border-right: 1px solid gray;
+}
+
+#menu {
+    padding-left: 1.0em;
+    margin-top: 32px;
+}
+
+div.title {
+    font-size: 48pt;
+}
+
+div.subtitle {
+    font-size: 16pt;
+}
+
+#header-img {
+    margin-left: 4.0em;
+}
+
+div.img {
+    width: 640px;
+    background: white;
+}
+
+td.article {
+    width: 8.0cm;
+    padding-right: 1.0em; 
+}
+
+div.date, div.read-more {
+    color: gray;
+    font-weight: bold;
+}
+
+div.article-title {
+    font-weight: bold;
+}
+
+div.in-article-title {
+    font-size: 20pt;
+    font-weight: bold;
+}
+
+div.in-article-title,
+div.in-article-date{
+    margin-bottom: 16px;
+}
+
+div.download{
+    border-bottom: 1px solid gray;
+    margin-bottom: 48px;
+}
+
+p {
+        margin-bottom: 1.0em;
+}
+
+p.header {
+        margin: 0;
+	padding: 0;
+}
+
+@media print {
+	#layout-menu { display: none; }
+}
+
+#page-title {
+        width: 8.0cm;
+        padding-right: 1.0em;
+}
+
+div.section {
+    font-size: 14pt;
+    font-weight: bold; 
+}
+
+table {
+        background: white;    
+}
+
+td {
+}
+
+img {
+}
+
+a {
+    color: #224488;
+    text-decoration: none;
+}
+
+a:hover {
+    border-bottom: 1px dotted;
+    color: #224466;
+}
+
+.scroll-top {
+    position: fixed;
+    margin-top: -10px;
+    padding-top: 10px;
+}
+
+.scroll-bottom {
+    padding-top: 12.0em;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 48pt;
+    color: gray;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 24pt;
+    color: gray;
+}

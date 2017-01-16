@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="main.css" type="text/css" />
+<link rel="stylesheet" href="theorems.css" type="text/css" />
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<title>yabacau. (Justin Le)</title>
+</head>
+
+<body>
+<table id="top-table">
+<td>
+<div id="header">
+    <div class="title">yabacau.</div>
+    <div class="subtitle"><p><i>yet another blog about</p>
+        <p>computation & uncertainty.</i></p>
+    </div>
+</div>
+</td>
+
+<td>
+<div id="menu">
+    <p><a href="index.html">home</a></p>
+    <p><a href="tutorials.html">tutorials</a></p>
+    <p><a href="projects.html">projects</a></p>
+    <p><a href="portal.html">portal</a></p>
+    <p><a href="about.html">about</a></p>
+</div>
+</td>
+
+<td>
+<div class="img">
+<img id="header-img" src="header-img.png" height="145px">
+</div>
+</td>
+</table>
+
+<table id="bottom-table">
+<tr valign="top">
+<td class="article">
+</td>
+
+<td>
+<div class="in-article-title">
+Exploring the structure and smoothness of manifolds
+</div>
+
+<div class="date in-article-date">
+Justin Le
+<br>
+March 30, 2016
+</div>
+
+<div class="download">
+Download this article: [<a href="tensors.pdf">PDF</a>] [<a href="tensors.tex">Latex</a>] [<a href="nips_custom.sty">Sty</a>]
+</div>
+
+<div class="section">Multilinear maps</div>
+<br>
+
+A tensor $\mathcal{T}$ of order $r$ can be expressed as the <i>tensor product</i> of $r$ vectors:
+\begin{equation}
+\mathcal{T} = u_1 \otimes u_2 \otimes \ldots \otimes u_r
+\end{equation}
+
+We herein fix $r = 3$ whenever it eases exposition. Recall that a vector $u \in U$ can be expressed as the combination of the basis vectors of $U$. Transform these basis vectors with a matrix $A$, and if the resulting vector $u'$ is equivalent to $uA$, then the components of $u$ are said to be <i>covariant</i>. If $u' = A^{-1}u$, i.e., the vector changes inversely with the change of basis, then the components of $u$ are <i>contravariant</i>. By <i>Einstein notation</i>, we index the covariant components of a tensor in subscript and the contravariant components in superscript.
+<br>
+<br>
+
+Just as the components of a vector $u$ can be indexed by an integer $i$ (as in $u_i$), tensor components can be indexed as $\mathcal{T}_{ijk}$. Additionally, as we can view a matrix to be a linear map $M: U \rightarrow V$ from one finite-dimensional vector space to another, we can consider a tensor to be <i>multilinear map</i> $\mathcal{T}: V^{*r} \times V^s \rightarrow \mathbb{R}$, where $V^s$ denotes the $s$-th-order Cartesian product of vector space $V$ with itself and likewise for its algebraic dual space $V^*$. In this sense, a tensor maps an ordered sequence of vectors to one of its (scalar) components. Just as a linear map satisfies $M(a_1 u_1 + a_2 u_2) = a_1 M(u_1) + a_2 M(u_2)$, we call an $r$-th-order tensor multilinear if it satisfies
+\begin{equation}
+\mathcal{T}(u_1, \ldots, a_1 v_1 + a_2 v_2, \ldots, u_r) = a_1 \mathcal{T}(u_1, \ldots, v_1, \ldots, u_r) + a_2 \mathcal{T}(u_1, \ldots, v_2, \ldots, u_r),
+\end{equation}
+for scalars $a_1$ and $a_2$.
+<br>
+<br>
+
+Let $\{\mathcal{T}\}$ be the set of all tensors. Endow $\{\mathcal{T}\}$ with the binary operator $+$ that maps two tensors, $\mathcal{T}_1$ and $\mathcal{T}_2$, to a tensor whose $ijk$-th component is the scalar addition of the $ijk$-th components of $\mathcal{T}_1$ and $\mathcal{T}_2$. Let scalar multiplication be defined on $\{\mathcal{T}\}$ such that the multiplication of $\mathcal{T}$ by a scalar $a$ results in a multiplication of its components by $a$. Further endow the set with the tensor product operator as defined above. Then with these operators, $\{\mathcal{T}\}$ forms an algebra over the field $\{a\}$, the set of all $a$ for which the above properties hold.
+<br>
+<br>
+
+<div class="section">Differentiation on smooth manifolds</div>
+<br>
+
+Let $X$ be any set and $T$ be a collection of subsets of $X$. Call the members of $T$ <i>open sets</i>. $T$ forms a topology on $X$ if its members satisfy:
+
+       <ul class="itemize1">
+       <li class="itemize"><span 
+class="cmmi-10">T </span>contains <span 
+class="cmmi-10">X </span>and the empty set <span 
+class="msbm-10">&#x2205;</span>
+       </li>
+       <li class="itemize">Arbitrary unions of open sets are open
+       </li>
+       <li class="itemize">Finite intersections of open sets are open</li></ul>
+
+Then $(X, T)$ is a <i>topological space</i> For simplicity, we often omit $T$ and refer to a topological space by its underlying set $X$.
+<br>
+<br>
+
+An open set containing $x \in X$ is a <i>neighborhood</i> of $x$. $T$ is <i>Hausdorff</i> if there exist disjoint sets $A, B \in T$ such that $a \in A$ and $b \in B$, $\forall a, b \in X$. That is, on a Hausdorff topological space, any two points lie in disjoint neighborhoods.
+<br>
+<br>
+<b>Proposition</b>. A subspace of a Hausdorff space is Hausdorff.
+<br>
+<br>
+<i>Proof</i>. Let $H$ and $G \subseteq H$ be topological spaces. (We omit their topologies for simplicity.) Suppose $G$ is not Hausdorff. Then for some $a, b \in G$, there exist $A, B \subseteq G$ such that $a \in A$, $b \in B$, and $A \cap B \neq \varnothing$. Yet, $a, b \in H$ and $A, B \subseteq H$, so the same can be said for $H$. Thus, $G$ not Hausdorff implies $H$ not Hausdorff.
+<br>
+<br>
+Recall that a map $f: \mathbb{R} \rightarrow \mathbb{R}$ is continuous at a point $c \in \mathbb{R}$ if $\forall \epsilon > 0$, $\exists \delta > 0$ such that $|x - c| < \delta \Rightarrow |f(x) - f(c)| < \epsilon$, $\forall x \in \mathbb{R}$. Intuitively, this definition of continuity seems to highlight a relationship between "neighborhoods" of size $\epsilon$ and $\delta$. We can analogously understand continuity of maps between topological spaces. 
+<br>
+<br>
+Let $X, Y$ be two topological spaces and $A \in X, B \in Y$ be open sets. A map $f: X \rightarrow Y$ is continuous if $\forall B \in Y$ and $\forall x \in X$, there exists a neighborhood $A$ of $x$ such that $f(A) \in B$. Equivalently, we can say that the inverse image of an open set in $Y$ is open.
+<br>
+<br>
+If both $f$ and its inverse are continous, then $f$ is a <i>homeomorphism</i>. Then there exists a continuous map $g: Y \rightarrow X$ such that $f \circ g = g \circ f = 1$. Then $X$ and $Y$ are <i>homeomorphic</i> or <i>topologically equivalent</i>.
+<br>
+<br>
+
+Recall that a map $f: \mathbb{R} \rightarrow \mathbb{R}$ is smooth if $\partial^k f / \partial x^k$ exists and is continuous $\forall x \in \mathbb{R}$ and $k = 1, 2, 3, \ldots$. Equivalently, we say that $f$ is $C^{\infty}(\mathbb{R})$. We can similarly define smoothness for maps between open sets. 
+<br>
+<br>
+
+Let $X, Y \subseteq \mathbb{R}^n$ be open sets. The map $f: X \rightarrow Y$ is smooth if every component of the Jacobian matrix 
+\begin{equation}
+Df(x) := \left [ \frac{\partial^i f}{\partial x^j} \right ] 
+\end{equation}
+exists and is continuous $\forall i, j = 1, 2, 3, \ldots$. Here, we note that, for a single component of $f$ (i.e., a map $f^i: \mathbb{R}^n \rightarrow \mathbb{R}$),
+\begin{equation}
+\frac{\partial f^i}{\partial x} = \frac{\partial^n f^i}{\partial x^1 \ldots \partial x^n}.
+\end{equation}
+
+Let $f: X \rightarrow Y$ be a homeomorphism, where $X, Y \subseteq \mathbb{R}$ are open sets. If both $f$ and its inverse are smooth, then $f$ is a <i>diffeomorphism</i>.
+
+</td>
+</table>
+</body>
+</html>
