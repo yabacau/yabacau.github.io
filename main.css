@@ -3,6 +3,7 @@ body {
     font-family: Times, Georgia, serif; 
     text-align: left;
     margin-bottom: 100px;
+    margin-left: 100px;
 }
 
 #top-table {
@@ -11,15 +12,11 @@ body {
     margin-bottom: 1.0em;
     margin-top: -10px;
     padding-top: 10px;
-    margin: 0 auto;
 }
 
 #bottom-table {
     padding-top: 1.0em;
     margin-bottom: 1.0em;
-    width: 56%;
-    max-width: 56%;
-    margin: 0 auto;
 }
 
 #header, #menu {
